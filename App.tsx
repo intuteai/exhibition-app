@@ -1,45 +1,26 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// ===================== app.tsx =====================
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './screens/Homescreen/Homescreen';
+import CaptureCard from './screens/CardCapture/CardCapture';
+import VisitorDetails from './screens/VisitorDetails/VisitorDetails';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+const Stack = createNativeStackNavigator();
 
-  return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
 
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
+const App = () => {
+return (
+<NavigationContainer>
+<Stack.Navigator>
+<Stack.Screen name="Home" component={HomeScreen} />
+<Stack.Screen name="CaptureCard" component={CaptureCard} options={{ title: 'Capture Card' }} />
+<Stack.Screen name="VisitorDetails" component={VisitorDetails} options={{ title: 'Visitor Details' }} />
+</Stack.Navigator>
+</NavigationContainer>
+);
+};
 
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
